@@ -15,7 +15,8 @@ public class VirtualMachine {
      */
     private String initialClass;
     /**
-     * 类加载器
+     * 类加载器 JvmDefaultClassLoader extend JvmClassLoader
+     * 包含Path(classPath)
      */
     private JvmClassLoader classLoader;
     /**
