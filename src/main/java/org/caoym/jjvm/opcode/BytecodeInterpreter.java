@@ -26,9 +26,11 @@ public class BytecodeInterpreter {
         while ((frame = stack.currentFrame()) != null){
             //如果栈帧被设置为返回，则将其返回值推入上一个栈帧的操作数栈
             if(frame.isReturned()){
+                //原先此处有 bug，多谢 @樂浩beyond 指出
                 StackFrame oldFrame = frame;
                 stack.popFrame();
                 frame = stack.currentFrame();
+                //如果有返回值，则将返回值推入上一个栈帧的操作数栈。
                 if(frame != null && !"void".equals(oldFrame.getReturnType())){
                     frame.getOperandStack().push(oldFrame.getReturn());
                 }
